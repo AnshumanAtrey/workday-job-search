@@ -1,0 +1,113 @@
+# Workday Jobs Scraper & API - All Companies, Last 24 Hours
+
+> Workday jobs scraper and API for every company on myworkdayjobs.com, searched live by job title, location, remote and posting date, newest first.
+
+## Summary
+
+Workday Job Search is an Apify actor that searches every company's career site on Workday (myworkdayjobs.com) at once with one keyword and returns one row per job, newest first: title, company, location, remote flag, posting date, requisition number and link. It covers 2,207 career sites of 1,688 employers and 650,000+ open jobs (2026-10-30), including Walmart, CVS Health, Target, NVIDIA, Lowe's, Citi, Salesforce and Accenture. No list of companies is needed. It reads Workday live at run time with no login and no API key.
+
+Store: https://apify.com/anshumanatrey/workday-job-search
+Source: https://github.com/AnshumanAtrey/workday-job-search
+
+## Key features
+
+- One keyword searches every employer at once: no company names or career-site links needed.
+- An empty form returns the newest jobs of every kind.
+- Newest first, read live, not from a stored copy.
+- Place filter by city, state, country or region: Germany, EMEA, LatAm, Worldwide. Jobs posted in several places are opened and every place is checked.
+- Reads a pasted Google dork such as site:myworkdayjobs.com intext:frontend.
+- Job link check: each pasted link comes back open or closed.
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word.
+- Where the job is (location): city, state, country or region.
+- Remote or onsite (workType): remote, hybrid or onsite, read from the title and location.
+- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
+- Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Full details (includeDetails): adds the description, exact date, job type, apply link and every location.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Match descriptions (searchDescriptions): finds your words in the description too.
+- Only these companies (companies): a name, the name in the address, or a career-site link.
+- Job links to check (jobUrls): checks links instead of searching.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included, no start fee:
+
+- Job: $0.0015 per saved job, and per checked link that is closed
+- Job with details: $0.0018 per saved job with full details on
+
+On paid Apify plans these are 10% less on Scale ($0.00135 and $0.00162) and 20% less on Business and above ($0.0012 and $0.00144).
+
+Typical costs (Free and Starter price):
+
+- 100 newest jobs: $0.15
+- 100 jobs with full details: $0.18
+- 1,000 jobs: $1.50
+
+## When to use
+
+- The user wants jobs from employers on Workday, or a myworkdayjobs.com jobs API, without naming companies first.
+- The user wants a daily feed of new jobs by title, country or region across thousands of large employers.
+- The user wants to check whether Workday job links are still open.
+
+## When NOT to use
+
+- The user needs pay ranges: Workday has no pay field and this actor does not extract them from the text.
+- The user needs every job of one company at a lower price and already has its career-site link: link-based actors cost less per job.
+- The user needs jobs from other platforms in one run: use a multi-ATS actor, or cornerstone-jobs-search and ashby-jobs-search for those platforms.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["software engineer"],
+  "location": ["United States", "Germany"],
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+```json
+{
+  "title": "Senior Infrastructure Security Engineer - EDA Clusters",
+  "company": "NVIDIA",
+  "location": "5 Locations",
+  "otherLocations": [],
+  "workType": null,
+  "employmentType": null,
+  "postedAt": "2026-10-29",
+  "expiresAt": null,
+  "jobUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-CA-Remote/Senior-Infrastructure-Security-Engineer---EDA-Clusters_JR2028279",
+  "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-CA-Remote/Senior-Infrastructure-Security-Engineer---EDA-Clusters_JR2028279",
+  "status": "open",
+  "platform": "workday",
+  "companySlug": "nvidia/wd5/NVIDIAExternalCareerSite",
+  "jobId": "US-CA-Remote/Senior-Infrastructure-Security-Engineer---EDA-Clusters_JR2028279",
+  "checkedAt": "2026-10-30T13:51:19+00:00"
+}
+```
+
+## Differentiators vs alternatives
+
+- vs fantastic-jobs/workday-jobs-api ($0.002 per job, 181 users): a stored database with AI fields; this actor costs 10% less with details on and reads Workday live.
+- vs glitchbound/workday-jobs-scraper ($0.002 per job, 123 users): takes company names or links and reads pay from the text; this actor needs one keyword and no company names.
+- vs johnvc/workday-careers-api ($0.0001 per job, $0.001 start): far cheaper per job when you have the career-site link; this actor needs no links.
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/workday-job-search
+- GitHub repo: https://github.com/AnshumanAtrey/workday-job-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of data and OSINT actors on Apify Store. Feature requests and bugs: LinkedIn (https://linkedin.com/in/anshumanatrey, fastest), GitHub issues, or atrey.dev.
+
+## Last updated
+
+2026-10-30

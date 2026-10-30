@@ -1,0 +1,178 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 2048,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "workday-jobs-last-24-hours",
+            "title": "Find every Workday job posted in the last 24 hours",
+            "description": "Get the jobs that thousands of employers on Workday posted in the last day, newest first, with the company, location and link. Schedule it daily for a fresh job feed with no list of companies needed.",
+            "input": {
+                "postedWithin": "24 hours",
+                "maxJobs": 100
+            },
+            "seoTitle": "New Workday Jobs in the Last 24 Hours",
+            "seoDescription": "Jobs posted on Workday career sites in the last day, across every employer, newest first, with company, location and link. Run it daily for a fresh feed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "remote-jobs-on-workday",
+            "title": "Find remote jobs on Workday across every company",
+            "description": "Get the newest remote jobs from every employer on Workday with one search, with the company, location, posting date and link. Remote is read from the job's title and location.",
+            "input": {
+                "workType": [
+                    "remote"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Remote Jobs on Workday, Every Company",
+            "seoDescription": "Search every company on Workday for remote jobs at once, newest first, with company, location, posting date and link. No company list and no login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "software-engineer-jobs-workday",
+            "title": "Find software engineer jobs on Workday at every company",
+            "description": "Get the newest software engineer jobs from every employer on Workday with one keyword, with the company, location, posting date and link. No list of companies needed.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Software Engineer Jobs on Workday",
+            "seoDescription": "Search every company on Workday for software engineer jobs with one keyword, newest first, with company, location, posting date and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "data-analyst-jobs-workday",
+            "title": "Find data analyst jobs on Workday at every company",
+            "description": "Get the newest data analyst jobs from every employer on Workday with one keyword, with the company, location, posting date and link. Add a country to narrow it.",
+            "input": {
+                "searchTerms": [
+                    "data analyst"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Data Analyst Jobs on Workday",
+            "seoDescription": "Search every company on Workday for data analyst jobs with one keyword, newest first, with company, location, posting date and job link. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "registered-nurse-jobs-usa-workday",
+            "title": "Find registered nurse jobs in the United States on Workday",
+            "description": "Get the newest registered nurse jobs in the United States from the hospitals and health systems on Workday, with the employer, city, posting date and link.",
+            "input": {
+                "searchTerms": [
+                    "registered nurse"
+                ],
+                "location": [
+                    "United States"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Registered Nurse Jobs in the USA on Workday",
+            "seoDescription": "Search the hospitals and health systems on Workday for registered nurse jobs in the United States, newest first, with employer, city, date and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "internships-on-workday-last-7-days",
+            "title": "Find internships posted on Workday in the last 7 days",
+            "description": "Get the internships that employers on Workday posted in the last week, newest first, with the company, location and link. Schedule it weekly during recruiting season.",
+            "input": {
+                "searchTerms": [
+                    "intern"
+                ],
+                "postedWithin": "7 days",
+                "maxJobs": 100
+            },
+            "seoTitle": "Internships on Workday, Last 7 Days",
+            "seoDescription": "Internships posted on Workday career sites in the last 7 days, across every employer, newest first, with company, location, posting date and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "manager-jobs-germany-workday",
+            "title": "Find manager jobs in Germany on Workday",
+            "description": "Get the newest manager jobs in Germany from every employer on Workday, including jobs posted for several countries, with the company, city, posting date and link.",
+            "input": {
+                "searchTerms": [
+                    "manager"
+                ],
+                "location": [
+                    "Germany"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Manager Jobs in Germany on Workday",
+            "seoDescription": "Search every company on Workday for manager jobs in Germany, including jobs posted for several countries, newest first, with company, city, date and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "check-workday-job-links",
+            "title": "Check whether Workday job links are still open",
+            "description": "Paste Workday job links and each comes back open or closed, with the job's details when it is open. Handy for cleaning dead links out of a job board or a spreadsheet.",
+            "input": {
+                "jobUrls": [
+                    "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-DC-Remote/Federal-Program-Director_JR2027714"
+                ]
+            },
+            "seoTitle": "Check if Workday Job Links Are Still Open",
+            "seoDescription": "Paste Workday job links and see which are still open and which are closed. Clean dead links out of a job board or a spreadsheet, with no login or API key.",
+            "inputSchemaFields": [
+                "jobUrls"
+            ],
+            "datasetView": "jobs"
+        }
+    ]
+}

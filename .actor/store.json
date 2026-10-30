@@ -11,7 +11,7 @@
     "isPublic": false,
     "defaultRunOptions": {
         "build": "latest",
-        "memoryMbytes": 2048,
+        "memoryMbytes": 1024,
         "timeoutSecs": 1800
     },
     "pricing": {
@@ -76,5 +76,6 @@
                 }
             }
         ]
-    }
+    },
+    "defaultRunOptions$comment": "1 GB: Workday holds a run to about 10 calls a second whatever the memory, so a full keyword pass takes the same time at 1 GB as at 2 GB and costs half (2026-10-30). Cornerstone is the opposite: CPU-bound, 2 GB."
 }

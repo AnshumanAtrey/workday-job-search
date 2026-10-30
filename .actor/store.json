@@ -1,0 +1,80 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). actorId is added after the first deploy.",
+    "seoTitle": "Workday Jobs Scraper - Search Every Company",
+    "seoDescription": "Search every company on Workday at once: job titles, locations, remote work and posting dates. Newest first, read live, no company list and no login.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "software engineer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": false,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 2048,
+        "timeoutSecs": 1800
+    },
+    "pricing": {
+        "$comment": "2026-10-30. Rule: rules/SEO.md section 16. Main competitors for one Workday job with its description: fantastic-jobs/workday-jobs-api $0.002 (181 u30, a database), glitchbound/workday-jobs-scraper $0.002 (123 u30, company names or links). 10% below them with details; a list-only row costs less. No start fee. Start high while private: a cut is free, a raise costs a month. Gentle ladder per the owner's decision of 2026-10-29.",
+        "apply": true,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, company, location, work type, posting date, job link and requisition number. Also one checked job link that is closed.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0015
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0015
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00135
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.0012
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.0012
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.0012
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, exact date, job type, apply link and every location.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0018
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0018
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00162
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.00144
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.00144
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.00144
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

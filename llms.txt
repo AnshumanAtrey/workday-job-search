@@ -4,7 +4,7 @@
 
 ## Summary
 
-Workday Job Search is an Apify actor that searches every company's career site on Workday (myworkdayjobs.com) at once with one keyword and returns one row per job, newest first: title, company, location, remote flag, posting date, requisition number and link. It covers 2,207 career sites of 1,688 employers and 650,000+ open jobs (2026-10-30), including Walmart, CVS Health, Target, NVIDIA, Lowe's, Citi, Salesforce and Accenture. No list of companies is needed. It reads Workday live at run time with no login and no API key.
+Workday Jobs Scraper (workday-job-search) is an Apify actor that searches every company's career site on Workday (myworkdayjobs.com) at once with one keyword and returns one row per job, newest first: title, company, location, remote flag, posting date and link; full details add the description, job type, requisition number and every location. It covers 2,207 career sites of 1,688 employers and 659,000+ open jobs (2026-10-30), including Walmart, CVS Health, Target, NVIDIA, Lowe's, Citi, Salesforce and Accenture. No list of companies is needed. It reads the public job list each career site shows any visitor, live at run time, with no login, no proxy and no API key. Built for job seekers, job boards, recruiters, sales teams watching hiring signals, data teams and AI agents.
 
 Store: https://apify.com/anshumanatrey/workday-job-search
 Source: https://github.com/AnshumanAtrey/workday-job-search
@@ -12,11 +12,11 @@ Source: https://github.com/AnshumanAtrey/workday-job-search
 ## Key features
 
 - One keyword searches every employer at once: no company names or career-site links needed.
-- An empty form returns the newest jobs of every kind.
+- An empty form returns the newest jobs of every kind, in seconds.
 - Newest first, read live, not from a stored copy.
 - Place filter by city, state, country or region: Germany, EMEA, LatAm, Worldwide. Jobs posted in several places are opened and every place is checked.
 - Reads a pasted Google dork such as site:myworkdayjobs.com intext:frontend.
-- Job link check: each pasted link comes back open or closed.
+- Job link check: each pasted link comes back open, closed or not found.
 
 ## Input keys
 
@@ -31,32 +31,58 @@ Source: https://github.com/AnshumanAtrey/workday-job-search
 - Only these companies (companies): a name, the name in the address, or a career-site link.
 - Job links to check (jobUrls): checks links instead of searching.
 
+## Output fields
+
+- Every row: title, company, location, workType (read from the title and location, or Workday's own field with details on), postedAt, jobUrl, applyUrl, status, platform, companySlug, jobId, checkedAt.
+- With full details: employmentType, otherLocations and expiresAt are filled, and description, descriptionHtml, reference (the requisition number), country and countryCode are added.
+- Not available: pay and department, because Workday has no such field. city and region stay empty, because Workday writes each place as one line.
+
 ## Pricing
 
 PAY_PER_EVENT model, platform usage included, no start fee:
 
-- Job: $0.0015 per saved job, and per checked link that is closed
-- Job with details: $0.0018 per saved job with full details on
+- Job: $0.0015 per saved job ($1.50 per 1,000), and per checked job link that is closed, not found, or open with full details off
+- Job with details: $0.0018 per saved job, or open checked link, with full details on ($1.80 per 1,000)
 
-On paid Apify plans these are 10% less on Scale ($0.00135 and $0.00162) and 20% less on Business and above ($0.0012 and $0.00144).
+On paid Apify plans these are 10% less on Scale ($0.00135 and $0.00162) and 20% less on Business and above ($0.0012 and $0.00144), so the Store page says "from $1.20 / 1,000 jobs".
 
 Typical costs (Free and Starter price):
 
 - 100 newest jobs: $0.15
 - 100 jobs with full details: $0.18
 - 1,000 jobs: $1.50
+- 10,000 jobs with full details: $18.00
+
+Apify's free plan gives $5 of credit every month: about 3,300 jobs, or about 2,700 with full details.
+
+## Speed (measured on Apify, default 2 GB of memory)
+
+- Empty form: 100 jobs in 8 seconds (run Lx3IaaIRiQebWgJ5x, 2026-10-30).
+- A keyword across every employer: 343 seconds, about 6 minutes, for all 2,207 career sites (run Of2PwwjAJ4c0KNKyF, 2026-10-30).
+- A keyword run limited to 5 minutes stops just before the limit and saves the newest matches from the sites read so far: 1,999 of 2,207 sites in 271 seconds, 100 jobs saved (run rm1PLFfreWWe2zhCP, build 1.0.8, 2026-11-03). The default limit is 30 minutes.
+- Named companies or job links: seconds (6 seconds for a keyword at NVIDIA, run Akotlc7P6DcNu5SoQ).
+
+## How to call it
+
+- Apify API: POST https://api.apify.com/v2/actors/anshumanatrey~workday-job-search/runs with the input as JSON and an Apify token, then GET https://api.apify.com/v2/datasets/<defaultDatasetId>/items once the run has SUCCEEDED. The one-call run-sync-get-dataset-items endpoint waits at most 5 minutes: enough for the empty form, named companies and job links, not for a keyword across every employer.
+- Python: pip install apify-client, then ApifyClient("<token>").actor("anshumanatrey/workday-job-search").call(run_input={"searchTerms": ["software engineer"]}); call() waits for the run.
+- JavaScript: npm install apify-client, then new ApifyClient({ token }).actor('anshumanatrey/workday-job-search').call({ searchTerms: ['software engineer'] }); call() waits for the run.
+- n8n: the Apify node, Run Actor with Wait for finish on, then Get Dataset Items. Make: the Apify modules Run an Actor and Get Dataset Items, or the Watch Actor Runs trigger for a keyword search, which takes minutes.
+- MCP: https://mcp.apify.com?tools=anshumanatrey/workday-job-search gives an AI agent this actor as a tool.
 
 ## When to use
 
 - The user wants jobs from employers on Workday, or a myworkdayjobs.com jobs API, without naming companies first.
-- The user wants a daily feed of new jobs by title, country or region across thousands of large employers.
+- The user wants a daily feed of new jobs by title, country or region across thousands of large employers: run it once a day with postedWithin set to 24 hours.
+- The user wants every open job of one company on Workday: companies plus maxJobs 0, up to Workday's 2,000 per career site.
 - The user wants to check whether Workday job links are still open.
 
 ## When NOT to use
 
 - The user needs pay ranges: Workday has no pay field and this actor does not extract them from the text.
 - The user needs every job of one company at a lower price and already has its career-site link: link-based actors cost less per job.
-- The user needs jobs from other platforms in one run: use a multi-ATS actor, or cornerstone-jobs-search and ashby-jobs-search for those platforms.
+- The user needs a keyword across every employer answered within seconds: that search reads every career site and takes about 6 minutes.
+- The user needs jobs from other platforms: use the sibling actors below, or a multi-ATS actor.
 
 ## Sample input
 
@@ -97,6 +123,16 @@ Typical costs (Free and Starter price):
 - vs glitchbound/workday-jobs-scraper ($0.002 per job, 123 users): takes company names or links and reads pay from the text; this actor needs one keyword and no company names.
 - vs johnvc/workday-careers-api ($0.0001 per job, $0.001 start): far cheaper per job when you have the career-site link; this actor needs no links.
 
+## Sibling actors
+
+- Ashby Jobs Scraper (https://apify.com/anshumanatrey/ashby-jobs-search): Jobs from every company on Ashby (jobs.ashbyhq.com), searched live
+- Cornerstone Jobs Scraper (https://apify.com/anshumanatrey/cornerstone-jobs-search): Jobs from every company on Cornerstone (csod.com), searched live
+- Deel Jobs Scraper (https://apify.com/anshumanatrey/deel-jobs-search): Jobs from every company on Deel ATS (jobs.deel.com), with pay
+- Greenhouse Jobs Scraper (https://apify.com/anshumanatrey/greenhouse-jobs-search): Jobs from every company on Greenhouse (boards.greenhouse.io), searched live
+- SmartRecruiters Jobs Scraper (https://apify.com/anshumanatrey/smartrecruiters-jobs-search): Jobs from 2,900+ companies on SmartRecruiters, searched live
+- Workable Jobs Scraper (https://apify.com/anshumanatrey/workable-job-search): Jobs from every company on Workable, in one search
+- Lever Jobs Scraper (https://apify.com/anshumanatrey/lever-jobs-search): Jobs from 2,300+ companies on Lever (jobs.lever.co), searched live
+
 ## Documentation
 
 - Apify Store: https://apify.com/anshumanatrey/workday-job-search
@@ -110,4 +146,4 @@ Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of 
 
 ## Last updated
 
-2026-10-30
+2026-11-03

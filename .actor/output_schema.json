@@ -7,7 +7,7 @@
         "jobs": {
             "type": "string",
             "title": "Jobs found (jobs)",
-            "description": "Every saved job, newest first: title, company, locations, work type, posting date and job link, and with details on the description, address and apply link. Export as JSON, CSV or Excel.",
+            "description": "Every saved job, newest first: title, company, locations, work type, posting date and job link, and with details on the description, requisition number, country and apply link. Export as JSON, CSV or Excel.",
             "template": "{{links.apiDefaultDatasetUrl}}/items"
         },
         "summary": {

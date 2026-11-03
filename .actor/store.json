@@ -1,7 +1,7 @@
 {
     "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). actorId is added after the first deploy.",
     "seoTitle": "Workday Jobs Scraper - Search Every Company",
-    "seoDescription": "Search every company on Workday at once: job titles, locations, remote work and posting dates. Newest first, read live, no company list and no login.",
+    "seoDescription": "Scrape Workday jobs from every career site at once: job titles, locations, remote work, posting dates. Newest first, read live, no company list or login.",
     "exampleRunInput": {
         "searchTerms": [
             "software engineer"

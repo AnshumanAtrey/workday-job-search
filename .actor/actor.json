@@ -20,7 +20,7 @@
         "dataset": {
             "actorSpecification": 1,
             "title": "Workday jobs",
-            "description": "One row per job, newest first: title, company, locations, work type, job type, pay, posting date and links; with details on, also the description, salary numbers and address. The run summary is the OUTPUT record, not a row.",
+            "description": "One row per job, newest first: title, company, location, work type, posting date and links; with details on, also the description, job type, requisition number, country and every location. Workday has no pay field. The run summary is the OUTPUT record, not a row.",
             "fields": {
                 "type": "object",
                 "properties": {
@@ -271,7 +271,7 @@
                 },
                 "details": {
                     "title": "Details",
-                    "description": "The description, address and every other field of each job.",
+                    "description": "The description, job type, country, other locations and links of each job, with full details on.",
                     "transformation": {
                         "fields": [
                             "title",

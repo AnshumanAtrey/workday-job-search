@@ -44,7 +44,7 @@ PAY_PER_EVENT model, platform usage included, no start fee:
 - Job: $0.0015 per saved job ($1.50 per 1,000), and per checked job link that is closed, not found, or open with full details off
 - Job with details: $0.0018 per saved job, or open checked link, with full details on ($1.80 per 1,000)
 
-On paid Apify plans these are 10% less on Scale ($0.00135 and $0.00162) and 20% less on Business and above ($0.0012 and $0.00144), so the Store page says "from $1.20 / 1,000 jobs".
+The Store header for Workday Jobs Scraper says "from $1.20 / 1,000 jobs" because Apify shows the cheapest of its Store discount tiers there: the GOLD price. What a user pays depends on their Apify plan: Free and Starter (FREE and BRONZE tiers) pay the base prices above; Scale (SILVER) pays 10% less, $0.00135 a job and $0.00162 with details; Business and enterprise plans (GOLD and above) pay 20% less, $0.0012 and $0.00144.
 
 Typical costs (Free and Starter price):
 

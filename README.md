@@ -29,14 +29,14 @@ Use it as a Workday jobs API, a myworkdayjobs scraper or a daily job feed from t
 
 ## How much does it cost to scrape Workday jobs?
 
-$1.50 per 1,000 jobs, or $1.80 per 1,000 with full details, on Apify's Free and Starter plans. You pay per event: platform usage is included, and there is no start fee or monthly fee.
+Workday Jobs Scraper costs $1.50 per 1,000 jobs, or $1.80 per 1,000 with full details, on Apify's Free and Starter plans. You pay per event: platform usage is included, and there is no start fee or monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
 | Job | $0.0015 | One saved job, and one checked job link that is closed, not found, or open with full details off |
 | Job with details | $0.0018 | One saved job, or one open checked link, with full details on |
 
-On paid Apify plans these are 10% less on Scale ($0.00135 and $0.00162) and 20% less on Business and above ($0.0012 and $0.00144), which is why the Store page says "from $1.20 / 1,000 jobs".
+The Store header for Workday Jobs Scraper says "from $1.20 / 1,000 jobs" because Apify shows the cheapest of its Store discount tiers there: the GOLD price. What you pay depends on your Apify plan: Free and Starter (FREE and BRONZE tiers) pay the base prices in the table above; Scale (SILVER) pays 10% less, $0.00135 a job and $0.00162 with details; Business and enterprise plans (GOLD and above) pay 20% less, $0.0012 and $0.00144.
 
 | Job (Free and Starter price) | Cost |
 |---|---|
@@ -136,31 +136,31 @@ Full details fill `employmentType`, `otherLocations` and `expiresAt` (when the c
 
 ### Does it work on the free Apify plan?
 
-Yes. Apify's free plan gives $5 of credit every month, and this actor charges only per delivered row: $1.50 per 1,000 jobs, so $5 covers about 3,300 jobs, or about 2,700 with full details. Platform usage is included and there is no start fee.
+Workday Jobs Scraper works on the free Apify plan, whose $5 of monthly credit covers about 3,300 jobs at $1.50 per 1,000, or about 2,700 with full details. You pay only per delivered row: platform usage is included and there is no start fee.
 
 ### How often should I run it?
 
-Once a day, with Posted in the last (`postedWithin`) set to 24 hours. Workday gives the day a job was posted, not the time, so 24 hours keeps the jobs dated today and yesterday: two daily runs overlap instead of leaving a gap, and `jobUrl` tells the repeats apart. Set it up under Schedules in Apify Console.
+Run Workday Jobs Scraper once a day, with Posted in the last (`postedWithin`) set to 24 hours. Workday gives the day a job was posted, not the time, so 24 hours keeps the jobs dated today and yesterday: two daily runs overlap instead of leaving a gap, and `jobUrl` tells the repeats apart. Set it up under Schedules in Apify Console.
 
 ### Which fields come back?
 
-Every row carries `title`, `company`, `location`, `workType` (read from the title and location, or Workday's own field with details on), `postedAt`, `jobUrl`, `applyUrl`, `status`, `platform`, `companySlug`, `jobId` and `checkedAt`. Full details fill `employmentType`, `otherLocations` and `expiresAt` and add `description`, `descriptionHtml`, `reference` (the requisition number), `country` and `countryCode`. Workday has no pay or department field, so neither comes back, and `city` and `region` stay empty because Workday writes each place as one line, such as US, CA, Santa Clara.
+Every row from Workday Jobs Scraper carries `title`, `company`, `location`, `workType` (read from the title and location, or Workday's own field with details on), `postedAt`, `jobUrl`, `applyUrl`, `status`, `platform`, `companySlug`, `jobId` and `checkedAt`. Full details fill `employmentType`, `otherLocations` and `expiresAt` and add `description`, `descriptionHtml`, `reference` (the requisition number), `country` and `countryCode`. Workday has no pay or department field, so neither comes back, and `city` and `region` stay empty because Workday writes each place as one line, such as US, CA, Santa Clara.
 
 ### How do I search one company?
 
-Type it into Only these companies (`companies`): a name (NVIDIA), the name in its Workday address (nvidia) or its career-site link. Leave the job titles empty and set Number of jobs (`maxJobs`) to 0 for all its open jobs, newest first, up to Workday's 2,000 per career site. Only that company's sites are read: a keyword search of NVIDIA took 6 seconds (run Akotlc7P6DcNu5SoQ), and every job of a big employer takes longer, because Workday sends 20 jobs a page.
+To search one company on Workday, type it into Only these companies (`companies`): a name (NVIDIA), the name in its Workday address (nvidia) or its career-site link. Leave the job titles empty and set Number of jobs (`maxJobs`) to 0 for all its open jobs, newest first, up to Workday's 2,000 per career site. Only that company's sites are read: a keyword search of NVIDIA took 6 seconds (run Akotlc7P6DcNu5SoQ), and every job of a big employer takes longer, because Workday sends 20 jobs a page.
 
 ### How do I check a list of job links?
 
-Paste the links into Job links to check (`jobUrls`), one per line. Each link comes back as one row whose `status` is open (with the job), closed, or not found when that career site does not exist. Each is one Job ($0.0015), or one Job with details ($0.0018) when it is open and Full details is on. A link that could not be checked is counted in the run summary and not charged.
+To check a list of Workday job links, paste them into Job links to check (`jobUrls`), one per line. Each link comes back as one row whose `status` is open (with the job), closed, or not found when that career site does not exist. Each is one Job ($0.0015), or one Job with details ($0.0018) when it is open and Full details is on. A link that could not be checked is counted in the run summary and not charged.
 
 ### Am I charged for closed jobs?
 
-A search returns open jobs only. A pasted link that turns out closed or not found is one Job row, because it was checked and answered.
+Workday Jobs Scraper charges for a closed job only when you paste its link: a search returns open jobs only, and a pasted link that turns out closed or not found is one Job row, because it was checked and answered.
 
 ### How does it find every company?
 
-Workday has no public list. The Wayback Machine lists archived pages under myworkdayjobs.com, and public job lists on GitHub link the rest, which gave 3,814 career sites; 2,207 still answer. That is the `site:myworkdayjobs.com` idea run on an archive instead of a search engine. To search a company that is not on the list, paste its career-site link into Only these companies.
+Workday Jobs Scraper carries its own list of career sites, because Workday has no public list of them. The Wayback Machine lists archived pages under myworkdayjobs.com, and public job lists on GitHub link the rest, which gave 3,814 career sites; 2,207 still answer. That is the `site:myworkdayjobs.com` idea run on an archive instead of a search engine. To search a company that is not on the list, paste its career-site link into Only these companies.
 
 ### Why do some big employers show exactly 2,000 jobs?
 
@@ -168,11 +168,11 @@ Workday's API reports and pages at most 2,000 jobs per career site. Newest come 
 
 ### Does it need a login or an API key?
 
-No. It reads the public job list each career site shows any visitor, the same Workday API the career page itself calls, so there is no login, no Workday account and no proxy. You need only an Apify account, and its API token when you call it from code.
+Workday Jobs Scraper needs no login, no Workday account, no proxy and no Workday API key. It reads the public job list each career site shows any visitor, the same Workday API the career page itself calls. You need only an Apify account, and its API token when you call it from code.
 
 ### How do I call it from the Apify API?
 
-Start a run with one POST and your Apify token, then read the rows once it has finished:
+To call Workday Jobs Scraper from the Apify API, start a run with one POST and your Apify token, then read the rows once it has finished:
 
 ```bash
 curl -X POST "https://api.apify.com/v2/actors/anshumanatrey~workday-job-search/runs" \
@@ -191,20 +191,20 @@ The one-call endpoint `run-sync-get-dataset-items` waits at most 5 minutes: enou
 
 ### How do I run it from Python?
 
-With the Apify client (`pip install apify-client`) and your Apify token. `call()` waits until the run has finished:
+To run Workday Jobs Scraper from Python, use the Apify client (`pip install apify-client`) and your Apify token. `call()` waits until the run has finished:
 
 ```python
 from apify_client import ApifyClient
 
 client = ApifyClient("<YOUR_APIFY_TOKEN>")
 run = client.actor("anshumanatrey/workday-job-search").call(run_input={"searchTerms": ["software engineer"]})
-for row in client.dataset(run.default_dataset_id).iterate_items()  # apify-client 3+; on 2.x use run["defaultDatasetId"]:
+for row in client.dataset(run.default_dataset_id).iterate_items():  # apify-client 3+; on 2.x use run["defaultDatasetId"]
     print(row["title"], row["company"], row["location"], row["jobUrl"])
 ```
 
 ### How do I run it from JavaScript?
 
-With the Apify client for Node.js (`npm install apify-client`). `call()` waits until the run has finished:
+To run Workday Jobs Scraper from JavaScript, use the Apify client for Node.js (`npm install apify-client`) and your Apify token. `call()` waits until the run has finished:
 
 ```js
 import { ApifyClient } from 'apify-client';
@@ -221,11 +221,11 @@ In n8n, add the Apify node, pick Run Actor with anshumanatrey/workday-job-search
 
 ### Can an AI agent use it as an MCP tool?
 
-Yes. Connect any MCP client (Claude, Cursor, VS Code) to the Apify MCP server with `https://mcp.apify.com?tools=anshumanatrey/workday-job-search` and the agent gets this actor as a tool, with `get-actor-run` and `get-dataset-items` to read the rows. With the server's default tools, an agent can also find it through `search-actors` and run it with `call-actor`, which waits at most 45 seconds: for a keyword search, which takes minutes, the agent reads the rows once `get-actor-run` says SUCCEEDED.
+An AI agent can use Workday Jobs Scraper as an MCP tool: connect any MCP client (Claude, Cursor, VS Code) to the Apify MCP server with `https://mcp.apify.com?tools=anshumanatrey/workday-job-search` and the agent gets this actor as a tool, with `get-actor-run` and `get-dataset-items` to read the rows. With the server's default tools, an agent can also find it through `search-actors` and run it with `call-actor`, which waits at most 45 seconds: for a keyword search, which takes minutes, the agent reads the rows once `get-actor-run` says SUCCEEDED.
 
 ### Is it legal to use?
 
-It reads public job postings. You are responsible for how you use the data, including each site's terms and the privacy laws that apply to you.
+Workday Jobs Scraper reads only public job postings, the ones each career site shows any visitor. You are responsible for how you use the data, including each site's terms and the privacy laws that apply to you.
 
 ## Limitations
 

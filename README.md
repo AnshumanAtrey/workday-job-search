@@ -198,7 +198,7 @@ from apify_client import ApifyClient
 
 client = ApifyClient("<YOUR_APIFY_TOKEN>")
 run = client.actor("anshumanatrey/workday-job-search").call(run_input={"searchTerms": ["software engineer"]})
-for row in client.dataset(run["defaultDatasetId"]).iterate_items():
+for row in client.dataset(run.default_dataset_id).iterate_items()  # apify-client 3+; on 2.x use run["defaultDatasetId"]:
     print(row["title"], row["company"], row["location"], row["jobUrl"])
 ```
 

@@ -134,9 +134,6 @@
             "editor": "stringList",
             "description": "Paste Workday job links, one per line, to check whether they are still open instead of searching. Each link comes back open (with the job) or closed. Handy for cleaning dead links out of a job board or a sheet.",
             "placeholderValue": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-DC-Remote/Federal-Program-Director_JR2027714",
-            "example": [
-                "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-DC-Remote/Federal-Program-Director_JR2027714"
-            ],
             "default": [],
             "sectionCaption": "Check job links",
             "nullable": true

@@ -12,7 +12,15 @@
             "description": "Get the jobs that thousands of employers on Workday posted in the last day, newest first, with the company, location and link. Schedule it daily for a fresh job feed with no list of companies needed.",
             "input": {
                 "postedWithin": "24 hours",
-                "maxJobs": 100
+                "maxJobs": 100,
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "New Workday Jobs in the Last 24 Hours",
             "seoDescription": "Jobs posted on Workday career sites in the last day, across every employer, newest first, with company, location and link. Run it daily for a fresh feed.",
@@ -33,7 +41,15 @@
                 "workType": [
                     "remote"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "searchTerms": [],
+                "location": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Remote Jobs on Workday, Every Company",
             "seoDescription": "Search every company on Workday for remote jobs at once, newest first, with company, location, posting date and link. No company list and no login needed.",
@@ -54,7 +70,15 @@
                 "searchTerms": [
                     "software engineer"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Software Engineer Jobs on Workday",
             "seoDescription": "Search every company on Workday for software engineer jobs with one keyword, newest first, with company, location, posting date and job link.",
@@ -75,7 +99,15 @@
                 "searchTerms": [
                     "data analyst"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Data Analyst Jobs on Workday",
             "seoDescription": "Search every company on Workday for data analyst jobs with one keyword, newest first, with company, location, posting date and job link. No login needed.",
@@ -99,7 +131,14 @@
                 "location": [
                     "United States"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Registered Nurse Jobs in the USA on Workday",
             "seoDescription": "Search the hospitals and health systems on Workday for registered nurse jobs in the United States, newest first, with employer, city, date and link.",
@@ -121,7 +160,14 @@
                     "intern"
                 ],
                 "postedWithin": "7 days",
-                "maxJobs": 100
+                "maxJobs": 100,
+                "location": [],
+                "workType": [],
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Internships on Workday, Last 7 Days",
             "seoDescription": "Internships posted on Workday career sites in the last 7 days, across every employer, newest first, with company, location, posting date and job link.",
@@ -145,7 +191,14 @@
                 "location": [
                     "Germany"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Manager Jobs in Germany on Workday",
             "seoDescription": "Search every company on Workday for manager jobs in Germany, including jobs posted for several countries, newest first, with company, city, date and link.",
@@ -165,7 +218,16 @@
             "input": {
                 "jobUrls": [
                     "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-DC-Remote/Federal-Program-Director_JR2027714"
-                ]
+                ],
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": []
             },
             "seoTitle": "Check if Workday Job Links Are Still Open",
             "seoDescription": "Paste Workday job links and see which are still open and which are closed. Clean dead links out of a job board or a spreadsheet, with no login or API key.",

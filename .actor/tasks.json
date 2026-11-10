@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build.",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 2048,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "workday-jobs-last-24-hours",
+            "publish": false,
             "title": "Find every Workday job posted in the last 24 hours",
             "description": "Get the jobs that thousands of employers on Workday posted in the last day, newest first, with the company, location and link. Schedule it daily for a fresh job feed with no list of companies needed.",
             "input": {
@@ -64,6 +65,7 @@
         },
         {
             "name": "software-engineer-jobs-workday",
+            "publish": false,
             "title": "Find software engineer jobs on Workday at every company",
             "description": "Get the newest software engineer jobs from every employer on Workday with one keyword, with the company, location, posting date and link. No list of companies needed.",
             "input": {
@@ -93,6 +95,7 @@
         },
         {
             "name": "data-analyst-jobs-workday",
+            "publish": false,
             "title": "Find data analyst jobs on Workday at every company",
             "description": "Get the newest data analyst jobs from every employer on Workday with one keyword, with the company, location, posting date and link. Add a country to narrow it.",
             "input": {
@@ -122,6 +125,7 @@
         },
         {
             "name": "registered-nurse-jobs-usa-workday",
+            "publish": false,
             "title": "Find registered nurse jobs in the United States on Workday",
             "description": "Get the newest registered nurse jobs in the United States from the hospitals and health systems on Workday, with the employer, city, posting date and link.",
             "input": {
@@ -153,6 +157,7 @@
         },
         {
             "name": "internships-on-workday-last-7-days",
+            "publish": false,
             "title": "Find internships posted on Workday in the last 7 days",
             "description": "Get the internships that employers on Workday posted in the last week, newest first, with the company, location and link. Schedule it weekly during recruiting season.",
             "input": {
@@ -182,6 +187,7 @@
         },
         {
             "name": "manager-jobs-germany-workday",
+            "publish": false,
             "title": "Find manager jobs in Germany on Workday",
             "description": "Get the newest manager jobs in Germany from every employer on Workday, including jobs posted for several countries, with the company, city, posting date and link.",
             "input": {

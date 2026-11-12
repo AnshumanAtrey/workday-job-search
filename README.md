@@ -4,6 +4,13 @@ Workday jobs scraper and API: type one job title and search every company on Wor
 
 Use it as a Workday jobs API, a myworkdayjobs scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It is the `site:myworkdayjobs.com` Google dork done at the source: it reads the public job list each career site shows its visitors, with no login, no proxy and no Workday API key. Available as an [Apify Actor](https://apify.com/anshumanatrey/workday-job-search). $1.50 per 1,000 jobs ($0.0015 a job), $1.80 per 1,000 with full details, no start fee, and Apify's free $5 monthly credit covers about 3,300 jobs.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Workday Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Workday%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fworkday-job-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http workday-job-search "https://mcp.apify.com?tools=anshumanatrey/workday-job-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add workday-job-search --url "https://mcp.apify.com?tools=anshumanatrey/workday-job-search"`, then `codex mcp login workday-job-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/workday-job-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Searches 2,207 career sites of 1,688 employers at once.** 659,000+ open jobs, at employers such as Walmart, CVS Health, Target, NVIDIA, Lowe's, Citi, Salesforce, Accenture, Johnson & Johnson and Northrop Grumman.
